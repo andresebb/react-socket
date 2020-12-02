@@ -1,5 +1,6 @@
 // Express Server
-const app = require("express")();
+const express = require("express");
+const app = express();
 
 // Socket Server
 const server = require("http").createServer(app);
@@ -7,8 +8,12 @@ const server = require("http").createServer(app);
 //Config socket server
 const io = require("socket.io")(server);
 
+// Desplegar nuestro directorio publico
+app.use(express.static(__dirname + "/public"));
+
+//Dispositivo que se conecta a mi socket
 io.on("connection", () => {
-  /* … */
+  console.log("Cliente conectado");
 });
 
 server.listen(3000, () => {
