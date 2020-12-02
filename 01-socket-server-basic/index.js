@@ -12,8 +12,11 @@ const io = require("socket.io")(server);
 app.use(express.static(__dirname + "/public"));
 
 //Dispositivo que se conecta a mi socket
-io.on("connection", () => {
-  console.log("Cliente conectado");
+io.on("connection", (socket) => {
+  socket.emit("mensaje-bienvendia", {
+    msg: "Bienvenido al server",
+    fecha: new Date(),
+  });
 });
 
 server.listen(3000, () => {
