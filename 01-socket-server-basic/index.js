@@ -18,8 +18,10 @@ io.on("connection", (socket) => {
     fecha: new Date(),
   });
 
-  socket.on("mensaje-cliente", (data) => {
+  socket.on("mensaje-to-server", (data) => {
     console.log(data);
+
+    io.emit("mensaje-from-server", data);
   });
 });
 
