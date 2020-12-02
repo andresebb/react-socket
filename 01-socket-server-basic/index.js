@@ -17,6 +17,10 @@ io.on("connection", (socket) => {
     msg: "Bienvenido al server",
     fecha: new Date(),
   });
+
+  socket.on("mensaje-cliente", (data) => {
+    console.log(data);
+  });
 });
 
 server.listen(3000, () => {
