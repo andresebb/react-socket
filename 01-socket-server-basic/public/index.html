@@ -49,23 +49,19 @@
       //Coneccion hacia nuestro socket server
       const socket = io("http://localhost:3000");
 
-      const formulario = document.getElementById("miForm");
-      const mensajes = document.getElementById("misMensajes");
-      const txtMensaje = document.getElementById("txtMensaje");
+      // //Para escuchar
+      // socket.on("mensaje-bienvendia", (data) => {
+      //   console.log(data);
+      // });
 
-      formulario.addEventListener("submit", (e) => {
-        e.preventDefault();
+      // socket.on("mensaje-from-server", (data) => {
+      //   console.log(data);
+      // });
 
-        const nuevoMensaje = txtMensaje.value;
-
-        socket.emit("mensaje-to-server", {
-          texto: nuevoMensaje,
-        });
-      });
-
-      socket.on("mensaje-from-server", (data) => {
-        mensajes.innerHTML += `<li>${data.texto}</li>`;
-      });
+      // //Para emitir
+      // socket.emit("mensaje-to-server", {
+      //   texto: "Hola servidor desde el cliente",
+      // });
     </script>
   </body>
 </html>
