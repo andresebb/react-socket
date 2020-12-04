@@ -9,9 +9,16 @@ class Sockets {
 
   socketEvents() {
     this.io.on("connection", (socket) => {
+      console.log("Cliente connected");
+
+      // Emitir al cleinte conectado todas las bandas actuales
       socket.emit("current-bands", this.bandList.getBands());
 
-      console.log("Cliente connectado");
+      //Votar por la banda
+      socket.on("votar-banda", (id) => {
+        this.bandList.increseVotes(id);
+        this.io.emit("current-bands", this.bandList.getBands());
+      });
     });
   }
 }
