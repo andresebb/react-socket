@@ -9,7 +9,7 @@ class Sockets {
 
   socketEvents() {
     this.io.on("connection", (socket) => {
-      console.log("Cliente connected");
+      console.log("Cliente connectedo");
 
       // Emitir al cleinte conectado todas las bandas actuales
       socket.emit("current-bands", this.bandList.getBands());
