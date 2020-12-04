@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BandAdd from "./BandAdd";
 
-const BandList = ({ data, votar }) => {
+const BandList = ({ data, votar, borrar }) => {
   const [bands, setBands] = useState(data);
 
   useEffect(() => {
@@ -34,8 +34,7 @@ const BandList = ({ data, votar }) => {
       <tr key={band.id}>
         <td>
           <button className="btn btn-primary" onClick={() => votar(band.id)}>
-            {" "}
-            +1{" "}
+            +1
           </button>
         </td>
 
@@ -52,7 +51,9 @@ const BandList = ({ data, votar }) => {
         </td>
         <td> {band.votes}</td>
         <td>
-          <button className="btn btn-danger">Borrar</button>
+          <button className="btn btn-danger" onClick={() => borrar(band.id)}>
+            Borrar
+          </button>
         </td>
       </tr>
     ));
