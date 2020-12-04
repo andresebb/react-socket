@@ -18,7 +18,7 @@ class BandList {
     this.bands.filter((band) => band.id !== id);
   }
 
-  getBand() {
+  getBands() {
     return this.bands;
   }
 

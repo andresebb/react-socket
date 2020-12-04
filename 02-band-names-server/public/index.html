@@ -13,31 +13,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Mini Chat</h1>
-      <hr />
-
-      <form id="miForm">
-        <div class="row">
-          <div class="col-8">
-            <input
-              type="text"
-              class="form-control"
-              id="txtMensaje"
-              p
-              laceholder="Escribe un mensaje"
-            />
-          </div>
-          <div class="col-4">
-            <button class="btn btn-primary">Enviar</button>
-          </div>
-        </div>
-      </form>
-
-      <div class="row mt-2">
-        <div class="col">
-          <ul id="misMensajes"></ul>
-        </div>
-      </div>
+      <h1>Hello World!</h1>
     </div>
 
     <script
@@ -49,19 +25,9 @@
       //Coneccion hacia nuestro socket server
       const socket = io("http://localhost:3000");
 
-      // //Para escuchar
-      // socket.on("mensaje-bienvendia", (data) => {
-      //   console.log(data);
-      // });
-
-      // socket.on("mensaje-from-server", (data) => {
-      //   console.log(data);
-      // });
-
-      // //Para emitir
-      // socket.emit("mensaje-to-server", {
-      //   texto: "Hola servidor desde el cliente",
-      // });
+      socket.on("current-bands", (data) => {
+        console.log(data);
+      });
     </script>
   </body>
 </html>
