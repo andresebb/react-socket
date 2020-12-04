@@ -53,6 +53,10 @@ const App = () => {
     });
   };
 
+  const crearBanda = (name) => {
+    socket.emit("crear-banda", { name });
+  };
+
   return (
     <>
       <div className="container">
@@ -81,7 +85,7 @@ const App = () => {
           </div>
 
           <div className="COL-4">
-            <BandAdd />
+            <BandAdd crear={crearBanda} />
           </div>
         </div>
       </div>

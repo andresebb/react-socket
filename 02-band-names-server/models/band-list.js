@@ -11,7 +11,8 @@ class BandList {
   }
 
   addBand(name) {
-    const newBand = new Band();
+    const newBand = new Band(name);
+    this.bands.push(newBand);
   }
 
   removeBand(id) {
