@@ -8,6 +8,27 @@ const BandList = ({ data }) => {
     setBands(data);
   }, [data]);
 
+  const cambioNombre = (event, id) => {
+    const nuevoNombre = event.target.value;
+
+    setBands((bands) =>
+      bands.map((band) => {
+        if (band.id === id) {
+          band.name = nuevoNombre;
+        }
+
+        return band;
+      })
+    );
+  };
+
+  const onPerdioFoco = (id, nombre) => {
+    console.log(id, nombre);
+
+    //TODO:
+    //Disparar el evento del socket
+  };
+
   const createRows = () => {
     return bands.map((band) => (
       <tr key={band.id}>
@@ -22,6 +43,8 @@ const BandList = ({ data }) => {
             name=""
             id=""
             value={band.name}
+            onChange={(event) => cambioNombre(event, band.id)}
+            onBlur={() => onPerdioFoco(band.id, band.name)}
           />
         </td>
         <td> {band.votes}</td>
