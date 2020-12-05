@@ -53,7 +53,9 @@ export const RouterPage = () => {
                 <Route exact path="/ingresar" component={Ingresar} />
                 <Route exact path="/cola" component={Cola} />
                 <Route exact path="/crear" component={CrearTicket} />
+
                 <Route exact path="/escritorio" component={Escritorio} />
+
                 <Redirect to="/ingresar" />
               </Switch>
             </Content>
