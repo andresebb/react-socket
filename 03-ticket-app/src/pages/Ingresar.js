@@ -1,5 +1,6 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory, Redirect } from "react-router-dom";
+import { getUsuarioStorage } from "../helpers/getUsuarioStorage";
 
 import {
   Form,
@@ -32,16 +33,24 @@ const tailLayout = {
 
 export const Ingresar = () => {
   const history = useHistory();
+
+  const [usuario] = useState(getUsuarioStorage());
+
   useHideMenu(false);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = ({ agente, escritorio }) => {
+    localStorage.setItem("agente", agente);
+    localStorage.setItem("escritorio", escritorio);
     history.push("/escritorio");
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  if (usuario.agente && usuario.escritorio) {
+    return <Redirect to="/escritorio" />;
+  }
 
   return (
     <>
@@ -60,7 +69,7 @@ export const Ingresar = () => {
       >
         <Form.Item
           label="Nombre del Agente"
-          name="Agente"
+          name="agente"
           rules={[
             {
               required: true,
