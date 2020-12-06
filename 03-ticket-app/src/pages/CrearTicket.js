@@ -3,12 +3,13 @@ import { Button, Col, Row, Typography } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useHideMenu } from "../hooks/useHideMenu";
 import { SocketContext } from "../context/SocketContext";
+import { useHistory } from "react-router-dom";
 
 const { Title, Text } = Typography;
 
 export const CrearTicket = () => {
   const { socket } = useContext(SocketContext);
-  useHideMenu(true);
+  // useHideMenu(true);
   const [ticket, setTicket] = useState(null);
 
   //Si recargas no se pierde el ticket en el que va
