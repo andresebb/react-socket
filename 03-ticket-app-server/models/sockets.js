@@ -1,21 +1,24 @@
+const TicketList = require("./TicketList");
+
 class Sockets {
   constructor(io) {
     this.io = io;
     this.socketEvents();
+    this.ticketList = new TicketList();
   }
 
   socketEvents() {
     this.io.on("connection", (socket) => {
-      // socket.emit("mensaje-bienvendia", {
-      //   msg: "Bienvenido al server",
-      //   fecha: new Date(),
-      // });
+      //Numero de ticket actual
+      socket.emit("ticket-actual", this.ticketList.actualTicket());
 
-      // socket.on("mensaje-to-server", (data) => {
-      //   console.log(data);
+      // Por el mismo canal recibe y dispara el callback al frotend
+      socket.on("solicitar-ticket", (data, callback) => {
+        const nuevoTicket = this.ticketList.crearTicket();
 
-      //   this.io.emit("mensaje-from-server", data);
-      // });
+        callback(nuevoTicket);
+      });
+
       console.log("Cliente connectado");
     });
   }

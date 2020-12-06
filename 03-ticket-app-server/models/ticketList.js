@@ -23,6 +23,10 @@ class TicketList {
     return nuevoTicket;
   }
 
+  actualTicket() {
+    return this.pendientes[this.pendientes.length - 1];
+  }
+
   asignarTicket(agente, escritorio) {
     if (this.pendientes.length === 0) {
       return null;
