@@ -17,7 +17,10 @@ class Server {
 
     //Configuraciones de sockets
     this.io = socketio(this.server, {
-      /* Config */
+      cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"],
+      },
     });
   }
 
