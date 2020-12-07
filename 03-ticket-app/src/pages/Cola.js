@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Col, Row, Typography, List, Card, Tag, Divider } from "antd";
 import { useHideMenu } from "../hooks/useHideMenu";
 import { SocketContext } from "../context/SocketContext";
+import { getUltimos } from "../helpers/getUltimos";
 
 const { Title, Text } = Typography;
 
@@ -54,6 +55,10 @@ export const Cola = () => {
       setTickets(data);
     });
   }, [socket]);
+
+  useEffect(() => {
+    getUltimos().then((data) => setTickets(data.ultimos));
+  }, []);
 
   return (
     <>
