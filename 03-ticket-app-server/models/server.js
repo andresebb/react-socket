@@ -22,26 +22,35 @@ class Server {
         methods: ["GET", "POST"],
       },
     });
+
+    this.sockets = new Sockets(this.io);
   }
 
   middlewares() {
     this.app.use(express.static(path.resolve(__dirname, "../public")));
 
     //CORS
-
     this.app.use(cors());
+
+    // Get de los ultimos tickets con res
+    this.app.use("/ultimos", (req, res) => {
+      res.json({
+        ok: true,
+        ultimos: this.sockets.ticketList.ultimos12,
+      });
+    });
   }
 
-  configurarSockets() {
-    new Sockets(this.io);
-  }
+  // configurarSockets() {
+  //   new Sockets(this.io);
+  // }
 
   execute() {
     //Inicializar middlewares
     this.middlewares();
 
-    //Inicializar Sockets
-    this.configurarSockets();
+    // //Inicializar Sockets
+    // this.configurarSockets();
 
     //Inicializar Server
     this.server.listen(this.port, () => {
